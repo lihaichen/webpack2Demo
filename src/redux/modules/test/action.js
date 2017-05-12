@@ -1,18 +1,12 @@
 import * as TEST from './action-type';
+import {get, update} from '../../../utils/action_common';
 // 更新计数器
 export function updateCount() {
-  return {
-    type: TEST.UPDATE_COUNT
-  };
+  return update(TEST.UPDATE_COUNT)();
 }
 
 export function getApiTest() {
-  return {
-    type: TEST.GET_API_TEST,
-    promise: (client) => {
-      return client.get('/api/test');
-    }
-  };
+  return get(TEST.GET_API_TEST)('/test')();
 }
 
 export async function testCompose(store) {
