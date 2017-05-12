@@ -1,0 +1,16 @@
+.idea/
+node_modules/
+dist/
+static/index.html
+public/
+.*/
+*.iml
+webpack-assets.json
+webpack-stats.json
+npm-debug.log
+jsconfig.json
+*.swp
+*.log
+*.bak
+git.json
+Makefile
