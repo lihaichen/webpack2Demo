@@ -20,7 +20,9 @@ module.exports = {
       'classnames',
       'immutable',
       'react',
-      'react-dom'
+      'react-dom',
+      'redux',
+      'react-redux'
     ]
   },
   output: {
