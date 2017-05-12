@@ -16,5 +16,5 @@ const enhancer = compose(
 const store = createStore(reducer, enhancer);
 ReactDOM.render(
   (<Provider store={store}>
-    {routes}
+    {routes(store)}
   </Provider>), document.getElementById('root'));
