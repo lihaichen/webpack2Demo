@@ -13,6 +13,12 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case TEST.UPDATE_COUNT:
       return state.setIn(['count'], state.get('count') + 1);
+    case TEST.GET_API_TEST:
+      return state.setIn(['fetchData', 'status'], requestStatus.LOAD_LOADING);
+    case TEST.GET_API_TEST + '_SUCCESS':
+      return state.setIn(['fetchData', 'status'], requestStatus.LOAD_SUCCESS);
+    case TEST.GET_API_TEST + '_FAIL':
+      return state.setIn(['fetchData', 'status'], requestStatus.LOAD_ERROR);
     default:
       return state;
   }

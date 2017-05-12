@@ -6,4 +6,17 @@ export function updateCount() {
   };
 }
 
+export function getApiTest() {
+  return {
+    type: TEST.GET_API_TEST,
+    promise: (client) => {
+      return client.get('/api/test');
+    }
+  };
+}
 
+export async function testCompose(store) {
+  console.log('---->1');
+  const result = await store.dispatch(getApiTest());
+  console.log('---->2', result);
+}
