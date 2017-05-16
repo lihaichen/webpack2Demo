@@ -8,7 +8,7 @@ import createMiddleware from './redux/middleware/clientMiddleware';
 import ApiClient from './utils/api_client';
 
 if (!PRODUCTION) {
-  console.log('Debug info');
+  console.log('Debug info', VERSION);
 }
 if (PRODUCTION) {
   console.log('Production log', VERSION);

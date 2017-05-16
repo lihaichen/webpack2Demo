@@ -1,7 +1,7 @@
 require("babel-polyfill");
 var path = require('path');
 var webpack = require('webpack');
-
+var proxy = require('../config/proxy');
 var gitHash = require('../bin/git_hash.js');
 var assetsPath = path.resolve(__dirname, '../dist');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -39,7 +39,7 @@ module.exports = {
     publicPath: '/',
     // match the output `publicPath`,
     historyApiFallback: true,
-    proxy: {}
+    proxy: proxy
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -51,11 +51,8 @@ module.exports = {
       name: 'vendor'
     }),
     new webpack.DefinePlugin({
-      PRODUCTION: JSON.stringify(true),
-      VERSION: JSON.stringify("5fa3b9"),
-      BROWSER_SUPPORTS_HTML5: true,
-      TWO: "1+1",
-      "typeof window": JSON.stringify("object")
+      PRODUCTION: JSON.stringify(false),
+      VERSION: JSON.stringify(gitHash.gitHash),
     })
   ],
   module: {
