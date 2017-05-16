@@ -29,7 +29,6 @@ export default class Test extends Component {
   }
 
   render() {
-    console.log('--->', this.props.test.toJS(), this.context);
     return (
       <div className={`${prefixCls}`}>
         <p>测试组件</p>

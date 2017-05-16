@@ -7,6 +7,12 @@ import reducer from './redux/reducer';
 import createMiddleware from './redux/middleware/clientMiddleware';
 import ApiClient from './utils/api_client';
 
+if (!PRODUCTION) {
+  console.log('Debug info');
+}
+if (PRODUCTION) {
+  console.log('Production log', VERSION);
+}
 
 const client = new ApiClient();
 const enhancer = compose(
