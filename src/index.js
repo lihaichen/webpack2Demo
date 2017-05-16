@@ -7,18 +7,19 @@ import reducer from './redux/reducer';
 import createMiddleware from './redux/middleware/clientMiddleware';
 import ApiClient from './utils/api_client';
 
-if (!PRODUCTION) {
-  console.log('Debug info', VERSION);
-}
-if (PRODUCTION) {
-  console.log('Production log', VERSION);
-}
+window.__PRODUCTION__ = __PRODUCTION__;
+window.__GITHASH__ = __GITHASH__;
 
 const client = new ApiClient();
-const enhancer = compose(
-  applyMiddleware(createMiddleware(client)),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+let enhancer;
+if (window.__PRODUCTION__) {
+  enhancer = applyMiddleware(createMiddleware(client));
+} else {
+  enhancer = compose(
+    applyMiddleware(createMiddleware(client)),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+}
 const store = createStore(reducer, enhancer);
 ReactDOM.render(
   (<Provider store={store}>

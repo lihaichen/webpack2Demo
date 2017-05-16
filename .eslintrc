@@ -6,8 +6,8 @@
     "mocha": true
   },
   "globals": {
-    "PRODUCTION": true,
-    "VERSION": true
+    "__PRODUCTION__": true,
+    "__GITHASH__": true
   },
   "rules": {
     "new-cap": [

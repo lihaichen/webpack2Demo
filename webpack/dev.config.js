@@ -51,8 +51,8 @@ module.exports = {
       name: 'vendor'
     }),
     new webpack.DefinePlugin({
-      PRODUCTION: JSON.stringify(false),
-      VERSION: JSON.stringify(gitHash.gitHash),
+      __PRODUCTION__: JSON.stringify(true),
+      __GITHASH__: JSON.stringify(gitHash.gitHash),
     })
   ],
   module: {
