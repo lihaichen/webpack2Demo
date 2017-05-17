@@ -3,6 +3,7 @@ import './test.less';
 const prefixCls = 'Test';
 import {connect} from 'react-redux';
 import * as testActions from '../../redux/modules/test/action';
+// import img from 'file!../../images/1.jpg';
 
 @connect(
   state => ({test: state.test}),
@@ -24,14 +25,15 @@ export default class Test extends Component {
   };
 
   componentWillMount() {
-    this.props.getApiTest();
-    testActions.testCompose(this.context.store);
+    // this.props.getApiTest();
+    // testActions.testCompose(this.context.store);
   }
 
   render() {
     return (
       <div className={`${prefixCls}`}>
         <p>测试组件</p>
+        <img src="/images/1.jpg"/>
       </div>);
   }
 }

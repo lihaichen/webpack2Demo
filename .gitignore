@@ -2,7 +2,7 @@
 node_modules/
 dist/
 static/index.html
-public/
+static/js/
 .*/
 *.iml
 webpack-assets.json

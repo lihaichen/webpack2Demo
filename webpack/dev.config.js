@@ -3,9 +3,8 @@ var path = require('path');
 var webpack = require('webpack');
 var proxy = require('../config/proxy');
 var gitHash = require('../bin/git_hash.js');
-var assetsPath = path.resolve(__dirname, '../dist');
+var assetsPath = path.resolve(__dirname, '../static');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -26,9 +25,9 @@ module.exports = {
     ]
   },
   output: {
-    path: assetsPath,
+    path: path.resolve(assetsPath, './js'),
     filename: `[name]-${gitHash.gitHash}.js`,
-    publicPath: '/',
+    publicPath: '/js',
     chunkFilename: `[name]-${gitHash.gitHash}.js`
   },
   devServer: {
@@ -46,6 +45,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'webpack demo',
       template: './template/index.html',
+      filename: '../index.html'
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
