@@ -4,37 +4,14 @@ var webpack = require('webpack');
 var assetsPath = path.resolve(__dirname, '../static');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('../config.json');
-var proxy = config.proxyConfig;
 var gitHash = config.debugConfig.gitHash;
 
-var webpackProxy = {};
-console.log('===>代理配置：');
-proxy.forEach(function(item) {
-  console.log(`代理【${item.path}】到【${item.target}】服务`);
-  webpackProxy[item.path] = {
-    target: item.target,
-    pathRewrite: {"^/api": ""}
-  };
-});
-
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
     main: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
       './src/index.js'
     ],
-    vendor: [
-      'babel-polyfill',
-      'lodash',
-      'classnames',
-      'immutable',
-      'react',
-      'react-dom',
-      'redux',
-      'react-redux'
-    ]
   },
   output: {
     path: assetsPath,
@@ -42,25 +19,11 @@ module.exports = {
     publicPath: '/',
     chunkFilename: `[name]-${gitHash}.js`
   },
-  devServer: {
-    hot: true,
-    // enable HMR on the server
-    contentBase: assetsPath,
-    // match the output path
-    publicPath: '/',
-    // match the output `publicPath`,
-    historyApiFallback: true,
-    proxy: webpackProxy
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: config.title,
       template: './template/index.html',
       filename: path.resolve(assetsPath, './index.html')
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
     }),
   ],
   module: {

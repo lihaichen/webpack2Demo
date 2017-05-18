@@ -6,8 +6,8 @@
   "scripts": {
     "test": "better-npm-run gen-dev-config && better-npm-run build",
     "dev": "better-npm-run gen-dev-config &&  better-npm-run dev",
-    "build": "better-npm-run gen-dev-config && better-npm-run build",
-    "prod": "better-npm-run gen-dev-config && better-npm-run prod"
+    "build": "better-npm-run gen-build-config && better-npm-run build",
+    "prod": "better-npm-run gen-prod-config && better-npm-run prod"
   },
   "betterScripts": {
     "gen-dev-config": {
@@ -35,15 +35,15 @@
       }
     },
     "build": {
-      "command": "node_modules/webpack/bin/webpack.js --config ./webpack/dev.config.js",
+      "command": "node_modules/webpack/bin/webpack.js --config ./webpack/build.config.js",
       "env": {
         "NODE_ENV": "build"
       }
     },
     "prod": {
-      "command": "node_modules/webpack/bin/webpack.js --config ./webpack/dev.config.js",
+      "command": "node_modules/webpack/bin/webpack.js --config ./webpack/prod.config.js",
       "env": {
-        "NODE_ENV": "build"
+        "NODE_ENV": "prod"
       }
     }
   },
