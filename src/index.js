@@ -6,13 +6,11 @@ import {Provider} from 'react-redux';
 import reducer from './redux/reducer';
 import createMiddleware from './redux/middleware/clientMiddleware';
 import ApiClient from './utils/api_client';
-
-window.__PRODUCTION__ = __PRODUCTION__;
-window.__GITHASH__ = __GITHASH__;
+import config from '../config.json';
 
 const client = new ApiClient();
 let enhancer;
-if (window.__PRODUCTION__) {
+if (config.isProduction) {
   enhancer = applyMiddleware(createMiddleware(client));
 } else {
   enhancer = compose(
