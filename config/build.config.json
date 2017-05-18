@@ -1,0 +1,19 @@
+{
+  "title": "webpack2 Demo",
+  "isProduction": false,
+  "proxyConfig": [
+    {
+      "path": "/api/test",
+      "target": "http://localhost:3000",
+      "des": "测试例子"
+    }
+  ],
+  "urlPrefix": {
+    "urlTestPrefix": "/test/v1/"
+  },
+  "debugConfig": {
+    "sentryKey": "",
+    "gitHash": "",
+    "googleAnalyticsId": ""
+  }
+}

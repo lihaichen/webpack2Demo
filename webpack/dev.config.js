@@ -1,10 +1,22 @@
 require("babel-polyfill");
 var path = require('path');
 var webpack = require('webpack');
-var proxy = require('../config/proxy');
-var gitHash = require('../bin/git_hash.js');
 var assetsPath = path.resolve(__dirname, '../static');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var config = require('../config.json');
+var proxy = config.proxyConfig;
+var gitHash = config.debugConfig.gitHash;
+
+var webpackProxy = {};
+console.log('===>代理配置：');
+proxy.forEach(function(item) {
+  console.log(`代理【${item.path}】到【${item.target}】服务`);
+  webpackProxy[item.path] = {
+    target: item.target,
+    pathRewrite: {"^/api": ""}
+  };
+});
+
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -38,7 +50,7 @@ module.exports = {
     publicPath: '/',
     // match the output `publicPath`,
     historyApiFallback: true,
-    proxy: proxy
+    proxy: webpackProxy
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

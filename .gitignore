@@ -14,3 +14,4 @@ jsconfig.json
 *.bak
 git.json
 Makefile
+config.json
