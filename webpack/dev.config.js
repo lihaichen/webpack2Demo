@@ -25,9 +25,9 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(assetsPath, './js'),
-    filename: `[name]-${gitHash.gitHash}.js`,
-    publicPath: '/js',
+    path: assetsPath,
+    filename: `js/[name]-${gitHash.gitHash}.js`,
+    publicPath: '/',
     chunkFilename: `[name]-${gitHash.gitHash}.js`
   },
   devServer: {
@@ -45,7 +45,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'webpack demo',
       template: './template/index.html',
-      filename: '../index.html'
+      filename: path.resolve(assetsPath, './index.html')
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
