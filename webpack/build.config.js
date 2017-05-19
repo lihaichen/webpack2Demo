@@ -38,14 +38,12 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        exclude: /node_modules/,
         use: [
           'json-loader'
         ]
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
         use: [
           'style-loader',
           'css-loader',
@@ -54,7 +52,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
           'style-loader',
           'css-loader'
