@@ -15,7 +15,7 @@ if (config.isProduction) {
 } else {
   enhancer = compose(
     applyMiddleware(createMiddleware(client)),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : func => func
   );
 }
 const store = createStore(reducer, enhancer);

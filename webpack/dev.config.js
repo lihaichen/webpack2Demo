@@ -21,7 +21,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     main: [
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://0.0.0.0:8080',
       'webpack/hot/only-dev-server',
       './src/index.js'
     ],
@@ -50,7 +50,10 @@ module.exports = {
     publicPath: '/',
     // match the output `publicPath`,
     historyApiFallback: true,
-    proxy: webpackProxy
+    proxy: webpackProxy,
+    host: '0.0.0.0',
+    port: 8989,
+    disableHostCheck: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -92,6 +95,12 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader'
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          'url-loader'
         ]
       }
     ]
