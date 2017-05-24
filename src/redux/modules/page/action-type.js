@@ -1,0 +1,1 @@
+export const UPDATE_TEST_PAGE_STATUS = 'page/UPDATE_TEST_PAGE_STATUS';
