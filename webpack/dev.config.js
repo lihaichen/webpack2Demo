@@ -1,19 +1,19 @@
-require("babel-polyfill");
-var path = require('path');
-var webpack = require('webpack');
-var assetsPath = path.resolve(__dirname, '../static');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var config = require('../config.json');
-var proxy = config.proxyConfig;
-var gitHash = config.debugConfig.gitHash;
+require('babel-polyfill');
+const path = require('path');
+const webpack = require('webpack');
+const assetsPath = path.resolve(__dirname, '../static');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('../config.json');
+const proxy = config.proxyConfig;
+const gitHash = config.debugConfig.gitHash;
 
-var webpackProxy = {};
+const webpackProxy = {};
 console.log('===>代理配置：');
 proxy.forEach(function(item) {
   console.log(`代理【${item.path}】到【${item.target}】服务`);
   webpackProxy[item.path] = {
     target: item.target,
-    pathRewrite: {"^/api": ""}
+    pathRewrite: {'^/api': ''}
   };
 });
 
@@ -21,7 +21,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     main: [
-      'webpack-dev-server/client?http://0.0.0.0:8080',
+      'webpack-dev-server/client?http://0.0.0.0:8989',
       'webpack/hot/only-dev-server',
       './src/index.js'
     ],
