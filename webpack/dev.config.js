@@ -104,5 +104,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    modules: ['node_modules', path.join(__dirname, '../node_modules')],
+    extensions: ['.web.js', '.js', '.json', '.jsx'],
   }
 };
