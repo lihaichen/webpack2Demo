@@ -1,8 +1,8 @@
 ## 运行
-npm install 或者 yarn install 
-npm run dev 或者 yarn dev 执行开发模式
-npm run build 或者 yarn build 打包工程
-npm run prod 或者 yarn prod 打包线上工程
+- npm install 或者 yarn install 
+- npm run dev 或者 yarn dev 执行开发模式
+- npm run build 或者 yarn build 打包工程
+- npm run prod 或者 yarn prod 打包线上工程
 
 ## 初衷
 有时候需要快速验证一个东西时，发现要配置一堆东西，就懒得做了，就想自己写了一个简单的脚手架，方便快速验证一下网页问题，css问题，js问题。我只能说大家喜欢造轮子，我也造一个。
