@@ -87,6 +87,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
           'less-loader'
         ]
       },
@@ -94,6 +95,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
+          'postcss-loader',
           'css-loader'
         ]
       },

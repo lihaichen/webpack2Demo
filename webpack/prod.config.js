@@ -1,10 +1,16 @@
 require("babel-polyfill");
-var path = require('path');
-var webpack = require('webpack');
-var assetsPath = path.resolve(__dirname, '../static');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var config = require('../config.json');
-var gitHash = config.debugConfig.gitHash;
+const path = require('path');
+const webpack = require('webpack');
+const assetsPath = path.resolve(__dirname, '../static');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('../config.json');
+const gitHash = config.debugConfig.gitHash;
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin(`stylesheets/${gitHash}-css.css`);
+const extractLESS = new ExtractTextPlugin(`stylesheets/${gitHash}-less.css`);
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const theme = {};
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -19,6 +25,9 @@ module.exports = {
     chunkFilename: `[name]-${gitHash}.js`
   },
   plugins: [
+    new CleanWebpackPlugin(['js', 'stylesheets', 'index.html'], {root: assetsPath, exclude: ['images']}),
+    extractCSS,
+    extractLESS,
     new HtmlWebpackPlugin({
       title: config.title,
       template: './template/index.html',
@@ -44,24 +53,17 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
+        use: extractLESS.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', `less-loader?{"modifyVars":${JSON.stringify(theme)}}`]
+        })
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [
-          'url-loader'
-        ]
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader']
+        })
       }
     ]
   },
